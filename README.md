@@ -10,7 +10,6 @@ Duplicates found:
 test_dir/1/file2
 test_dir/4/file2
 test_dir/3/file2
-
 test_dir/1/file1
 test_dir/4/file1
 ```
