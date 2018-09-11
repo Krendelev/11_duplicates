@@ -3,24 +3,23 @@ import sys
 
 
 def get_duplicates(path):
-    file_dict, duplicates = {}, {}
+    file_dict = {}
     for root, dirs, files in os.walk(path):
         for name in files:
             file_path = os.path.join(root, name)
             file_size = os.path.getsize(file_path)
-            dup_location = file_dict.setdefault((name, file_size), [])
-            if dup_location:
-                duplicates.update({name: dup_location})
-            dup_location.append(root)
-    return duplicates
+            dup_location = file_dict.setdefault((name, file_size), []).append(file_path)
+    return file_dict
 
 
 def print_duplicates(duplicates):
-    if duplicates:
+    output = []
+    for name, paths in duplicates.items():
+        if len(paths) > 1:
+            output.extend([path for path in paths])
+    if output:
         print('Duplicates found:')
-        for name, paths in duplicates.items():
-            output = ['/'.join([path, name]) for path in paths]
-            print(*output, sep='\n', end='\n\n')
+        print(*output, sep='\n', end='\n\n')
     else:
         print('Duplicates not found')
 
