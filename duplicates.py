@@ -15,9 +15,9 @@ def get_files(path):
     return file_dict
 
 
-def print_duplicates(files):
+def print_duplicates(file_list):
     duplicates = [
-        path for paths in files.values()
+        path for paths in file_list.values()
         for path in paths if len(paths) > 1
     ]
     if duplicates:
