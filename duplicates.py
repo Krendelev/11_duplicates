@@ -8,7 +8,7 @@ def get_files_locations(path):
         for filename in filenames:
             file_path = os.path.join(root, filename)
             file_size = os.path.getsize(file_path)
-            file_dict_insertion = locations.setdefault(
+            location_insertion = locations.setdefault(
                 (filename, file_size),
                 []
                 ).append(file_path)
